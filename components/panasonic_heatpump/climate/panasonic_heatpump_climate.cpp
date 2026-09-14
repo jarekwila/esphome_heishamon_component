@@ -70,7 +70,7 @@ void PanasonicHeatpumpClimate::control(const climate::ClimateCall& call) {
     float new_temp = *call.get_target_temperature_low();
     switch (this->id_) {
     case ClimateIds::CONF_CLIMATE_ZONE1:
-      this->parent_->set_command_byte(PanasonicCommand::setPlus128(new_temp), 39);  // set6
+      this->parent_->set_command_byte(PanasonicCommand::setPlus128(new_temp), 86);  // set16_09
       break;
     case ClimateIds::CONF_CLIMATE_ZONE2:
       this->parent_->set_command_byte(PanasonicCommand::setPlus128(new_temp), 41);  // set8
@@ -117,15 +117,15 @@ void PanasonicHeatpumpClimate::publish_new_state(const std::vector<uint8_t>& dat
     if (!require_index(139))
       return;
     new_target_temp_heat = PanasonicDecode::getByteMinus128(data[75]);  // set16_01
-    new_target_temp_cool = PanasonicDecode::getByteMinus128(data[39]);  // set6
+    new_target_temp_cool = PanasonicDecode::getByteMinus128(data[86]);  // set16_09
     new_current_temp = PanasonicDecode::getByteMinus128(data[139]);     // top56
     break;
   case ClimateIds::CONF_CLIMATE_ZONE2:
     if (!require_index(140))
       return;
-    new_target_temp_heat = PanasonicDecode::getByteMinus128(data[40]);  // set7
-    new_target_temp_cool = PanasonicDecode::getByteMinus128(data[41]);  // set8
-    new_current_temp = PanasonicDecode::getByteMinus128(data[140]);     // top57
+    new_target_temp_heat = PanasonicDecode::getByteMinus128(data[40]);  // set7 (zone2)
+    new_target_temp_cool = PanasonicDecode::getByteMinus128(data[41]);  // set8 (zone2)
+    new_current_temp = PanasonicDecode::getByteMinus128(data[140]);     // top57 (zone2)
     break;
   default:
     return;
