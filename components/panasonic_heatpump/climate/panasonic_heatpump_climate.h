@@ -43,9 +43,9 @@ class PanasonicHeatpumpClimate : public climate::Climate,
   uint8_t setClimateMode(const climate::ClimateMode mode, const uint8_t byte);
 
   bool cool_mode_{false};
-  float min_temperature_{-5.0};
-  float max_temperature_{5.0};
-  float temperature_step_{0.5};
+  float min_temperature_{20.0};
+  float max_temperature_{55.0};
+  float temperature_step_{1.0};
 };
 }  // namespace panasonic_heatpump
 }  // namespace esphome
