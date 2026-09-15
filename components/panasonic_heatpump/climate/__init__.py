@@ -50,7 +50,7 @@ CONFIG_SCHEMA = cv.Schema(
         ).extend(climate_options(20.0, 65.0, 0.5)),
         cv.Optional(CONF_CLIMATE_ZONE1): climate.climate_schema(
             PanasonicHeatpumpClimate
-        ).extend(climate_options(-5.0, 5.0, 0.5)),
+        ).extend(climate_options(20.0, 55.0, 1.0)),
         cv.Optional(CONF_CLIMATE_ZONE2): climate.climate_schema(
             PanasonicHeatpumpClimate
         ).extend(climate_options(-5.0, 5.0, 0.5)),
